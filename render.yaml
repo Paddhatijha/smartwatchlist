@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: smart-watchlist
+    runtime: node
+    plan: free
+    rootDir: .
+    buildCommand: npm run install:all && npm run build
+    startCommand: npm start --prefix backend
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 10000
+    disk:
+      name: watchlist-data
+      mountPath: /opt/render/project/src/backend
+      sizeGB: 1
